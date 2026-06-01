@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { ReactColorPicker } from "@aneeshbhat/react-color-picker";
-import { Checkbox } from "./Checkbox";
+import { Checkbox } from "./components/Checkbox";
+import { Toast } from "./components/Toast";
 import githubIcon from "./assets/Octicons-mark-github.svg";
 import linkedinIcon from "./assets/LinkedIn_icon.svg";
+import contentCopyIcon from "./assets/content-copy.svg";
 import "./App.css";
 
 import "@aneeshbhat/react-color-picker/style.css";
@@ -10,8 +12,11 @@ import "@aneeshbhat/react-color-picker/style.css";
 export default function App() {
     const [color, setColor] = useState("#fffdf6");
     const [hideEyedrop, setHideEyedrop] = useState(false);
+    const [copyTick, setCopyTick] = useState(0);
 
     return (
+        <>
+        <Toast show={copyTick > 0} key={copyTick} textContent={`Copied "${color}" to clipboard!`} />
         <main
             style={{
                 minHeight: "100vh",
@@ -51,6 +56,13 @@ export default function App() {
                                 value={color}
                                 onChange={(e) => setColor(e.target.value as string)}
                             />
+                            <button
+                                className="copy-btn"
+                                onClick={() => { navigator.clipboard.writeText(color); setCopyTick(t => t + 1); }}
+                                title="Copy color value"
+                            >
+                                <img src={contentCopyIcon} alt="Copy" width={16} height={16} />
+                            </button>
                         </div>
 
                         <div className="customize-card">
@@ -85,5 +97,6 @@ export default function App() {
                 </a>
             </footer>
         </main>
+        </>
     );
 }
