@@ -1,12 +1,15 @@
 import { useState } from "react";
 import { ReactColorPicker } from "@aneeshbhat/react-color-picker";
+import { Checkbox } from "./Checkbox";
 import githubIcon from "./assets/Octicons-mark-github.svg";
 import linkedinIcon from "./assets/LinkedIn_icon.svg";
+import "./App.css";
 
 import "@aneeshbhat/react-color-picker/style.css";
 
 export default function App() {
     const [color, setColor] = useState("#fffdf6");
+    const [hideEyedrop, setHideEyedrop] = useState(false);
 
     return (
         <main
@@ -18,47 +21,47 @@ export default function App() {
                 backgroundColor: color,
             }}
         >
-            <section style={{ width: 360 }}>
-                <h1>React Color Picker</h1>
+            <section style={{ width: "min(100%, 660px)", padding: "0 16px", boxSizing: "border-box" }}>
+                <h1 style={{ marginBottom: "16px" }}>React Color Picker</h1>
 
-                <div style={{ height: 320 }}>
-                    <ReactColorPicker value={color} onChange={setColor} />
-                </div>
+                <div className="layout">
+                    {/* Left: picker */}
+                    <div className="picker-col">
+                        <ReactColorPicker
+                            value={color}
+                            onChange={setColor}
+                            hideEyedrop={hideEyedrop}
+                        />
+                    </div>
 
-                <div
-                    style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "8px",
-                        marginTop: "12px",
-                        background: "white",
-                        border: "1px solid #ccc",
-                        borderRadius: "6px",
-                        padding: "6px 10px",
-                    }}
-                >
-                    <div
-                        style={{
-                            width: "20px",
-                            height: "20px",
-                            borderRadius: "4px",
-                            backgroundColor: color,
-                            border: "1px solid rgba(0,0,0,0.15)",
-                            flexShrink: 0,
-                        }}
-                    />
-                    <input
-                        value={color}
-                        onChange={(e) => setColor(e.target.value as string)}
-                        style={{
-                            border: "none",
-                            outline: "none",
-                            fontSize: "14px",
-                            fontFamily: "monospace",
-                            width: "100%",
-                            background: "transparent",
-                        }}
-                    />
+                    {/* Right: value + customization */}
+                    <div className="controls-col">
+                        <div className="color-input-row">
+                            <div
+                                style={{
+                                    width: "20px",
+                                    height: "20px",
+                                    borderRadius: "4px",
+                                    backgroundColor: color,
+                                    border: "1px solid rgba(0,0,0,0.15)",
+                                    flexShrink: 0,
+                                }}
+                            />
+                            <input
+                                value={color}
+                                onChange={(e) => setColor(e.target.value as string)}
+                            />
+                        </div>
+
+                        <div className="customize-card">
+                            <span className="customize-label">Customize</span>
+                            <Checkbox
+                                label="Hide Eyedrop"
+                                checked={hideEyedrop}
+                                onChange={setHideEyedrop}
+                            />
+                        </div>
+                    </div>
                 </div>
             </section>
 
