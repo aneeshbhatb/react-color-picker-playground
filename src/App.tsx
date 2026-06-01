@@ -4,6 +4,7 @@ import { Checkbox } from "./components/Checkbox";
 import { Toast } from "./components/Toast";
 import githubIcon from "./assets/Octicons-mark-github.svg";
 import linkedinIcon from "./assets/LinkedIn_icon.svg";
+import npmIcon from "./assets/Npm-logo.svg";
 import contentCopyIcon from "./assets/content-copy.svg";
 import "./App.css";
 
@@ -85,10 +86,14 @@ export default function App() {
                     right: 0,
                     display: "flex",
                     justifyContent: "center",
+                    alignItems: "center",
                     gap: "16px",
                     padding: "12px",
                 }}
             >
+                <a href="https://www.npmjs.com/package/@aneeshbhat/react-color-picker" target="_blank" rel="noreferrer">
+                    <img src={npmIcon} alt="npm" width={40} height={40} />
+                </a>
                 <a href="https://github.com/aneeshbhatb/react-color-picker" target="_blank" rel="noreferrer">
                     <img src={githubIcon} alt="GitHub" width={24} height={24} />
                 </a>
