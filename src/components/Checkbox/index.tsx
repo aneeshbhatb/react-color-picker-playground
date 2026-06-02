@@ -2,11 +2,12 @@ import { useId } from "react";
 
 interface CheckboxProps {
     label: string;
+    subtext?: string;
     checked: boolean;
     onChange: (checked: boolean) => void;
 }
 
-export function Checkbox({ label, checked, onChange }: CheckboxProps) {
+export function Checkbox({ label, subtext, checked, onChange }: CheckboxProps) {
     const id = useId();
 
     return (
@@ -70,7 +71,14 @@ export function Checkbox({ label, checked, onChange }: CheckboxProps) {
                     }}
                 />
             </span>
-            {label}
+            <span style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
+                {label}
+                {subtext && (
+                    <span style={{ fontSize: "11px", color: "#9ca3af", fontFamily: "monospace" }}>
+                        {subtext}
+                    </span>
+                )}
+            </span>
         </label>
     );
 }

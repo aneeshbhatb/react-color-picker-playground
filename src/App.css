@@ -1,21 +1,26 @@
 .layout {
   display: flex;
   gap: 24px;
-  align-items: flex-start;
+  align-items: stretch;
+  min-height: 320px;
 }
 
 .picker-col {
-  width: 320px;
-  height: 320px;
-  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
 }
 
-.controls-col {
+.picker-col,
+.customize-col,
+.code-col {
+  flex: 1;
+  min-width: 0;
+}
+
+.customize-col {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  flex: 1;
-  min-width: 0;
 }
 
 .color-input-row {
@@ -82,6 +87,12 @@
   }
 
   .picker-col {
+    flex: none;
+    height: 320px;
+  }
+
+  .customize-col,
+  .code-col {
     width: 100%;
   }
 }

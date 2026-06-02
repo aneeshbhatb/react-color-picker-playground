@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ReactColorPicker } from "@aneeshbhat/react-color-picker";
 import { Checkbox } from "./components/Checkbox";
+import { CodeViewer } from "./components/CodeViewer";
 import { Toast } from "./components/Toast";
 import githubIcon from "./assets/Octicons-mark-github.svg";
 import linkedinIcon from "./assets/LinkedIn_icon.svg";
@@ -13,6 +14,7 @@ import "@aneeshbhat/react-color-picker/style.css";
 export default function App() {
     const [color, setColor] = useState("#fffdf6");
     const [hideEyedrop, setHideEyedrop] = useState(false);
+    const [hideOpacity, setHideOpacity] = useState(false);
     const [copyTick, setCopyTick] = useState(0);
 
     return (
@@ -27,21 +29,22 @@ export default function App() {
                 backgroundColor: color,
             }}
         >
-            <section style={{ width: "min(100%, 660px)", padding: "0 16px", boxSizing: "border-box" }}>
+            <section style={{ width: "min(100%, 1100px)", padding: "0 16px", boxSizing: "border-box" }}>
                 <h1 style={{ marginBottom: "16px" }}>React Color Picker</h1>
 
                 <div className="layout">
-                    {/* Left: picker */}
+                    {/* Col 1: Picker */}
                     <div className="picker-col">
                         <ReactColorPicker
                             value={color}
                             onChange={setColor}
                             hideEyedrop={hideEyedrop}
+                            hideOpacityControl={hideOpacity}
                         />
                     </div>
 
-                    {/* Right: value + customization */}
-                    <div className="controls-col">
+                    {/* Col 2: Customization */}
+                    <div className="customize-col">
                         <div className="color-input-row">
                             <div
                                 style={{
@@ -70,10 +73,22 @@ export default function App() {
                             <span className="customize-label">Customize</span>
                             <Checkbox
                                 label="Hide Eyedrop"
+                                subtext={`hideEyedrop={${hideEyedrop}}`}
                                 checked={hideEyedrop}
                                 onChange={setHideEyedrop}
                             />
+                            <Checkbox
+                                label="Hide Opacity Control"
+                                subtext={`hideOpacityControl={${hideOpacity}}`}
+                                checked={hideOpacity}
+                                onChange={setHideOpacity}
+                            />
                         </div>
+                    </div>
+
+                    {/* Col 3: Code viewer */}
+                    <div className="code-col">
+                        <CodeViewer hideEyedrop={hideEyedrop} hideOpacity={hideOpacity} />
                     </div>
                 </div>
             </section>
