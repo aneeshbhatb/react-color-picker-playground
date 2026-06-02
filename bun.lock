@@ -5,7 +5,7 @@
     "": {
       "name": "react-color-picker-test",
       "dependencies": {
-        "@aneeshbhat/react-color-picker": "0.2.0",
+        "@aneeshbhat/react-color-picker": "0.3.0-alpha.0",
         "react": "^19.2.6",
         "react-dom": "^19.2.6",
         "react-syntax-highlighter": "^16.1.1",
@@ -28,7 +28,7 @@
     },
   },
   "packages": {
-    "@aneeshbhat/react-color-picker": ["@aneeshbhat/react-color-picker@0.2.0", "", { "peerDependencies": { "react": ">=18", "react-dom": ">=18" } }, "sha512-Yri+HcePUxHBBuXD9UsP21inV2sPdOUIQWBk1hsywzruh4gAhoPquVwHMT3kIFiYQg5lz4ucjTB+HTI/8ZT0wA=="],
+    "@aneeshbhat/react-color-picker": ["@aneeshbhat/react-color-picker@0.3.0-alpha.0", "", { "peerDependencies": { "react": ">=18", "react-dom": ">=18" } }, "sha512-k1YdPphmJftIy34DXCoYl0fXWCn4+XPU6OUlxrXkNe/uQ57cHZ+zTCiNpqQMbV252YaQyU9I9Dk7vX0xa/avgg=="],
 
     "@babel/code-frame": ["@babel/code-frame@7.29.7", "", { "dependencies": { "@babel/helper-validator-identifier": "^7.29.7", "js-tokens": "^4.0.0", "picocolors": "^1.1.1" } }, "sha512-Aup7aUOfpbAUg2ROOJN6Iw5f9DMBlzu0mIkm/malLQFN/YQgO48wCj0Kxa3sEHJvPVFg7siR+qRInwXd2qhQKw=="],
 

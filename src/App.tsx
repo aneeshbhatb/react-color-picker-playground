@@ -26,7 +26,7 @@ export default function App() {
                 display: "grid",
                 placeItems: "center",
                 fontFamily: "system-ui, sans-serif",
-                backgroundColor: color,
+                background: color,
             }}
         >
             <section style={{ width: "min(100%, 1100px)", padding: "0 16px", boxSizing: "border-box" }}>
@@ -51,7 +51,7 @@ export default function App() {
                                     width: "20px",
                                     height: "20px",
                                     borderRadius: "4px",
-                                    backgroundColor: color,
+                                    background: color,
                                     border: "1px solid rgba(0,0,0,0.15)",
                                     flexShrink: 0,
                                 }}
