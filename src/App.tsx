@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ReactColorPicker } from "@aneeshbhat/react-color-picker";
 import { Checkbox } from "./components/Checkbox";
+import { Dropdown } from "./components/Dropdown";
 import { CodeViewer } from "./components/CodeViewer";
 import { Toast } from "./components/Toast";
 import githubIcon from "./assets/Octicons-mark-github.svg";
@@ -12,10 +13,11 @@ import "./App.css";
 import "@aneeshbhat/react-color-picker/style.css";
 
 export default function App() {
-    const [color, setColor] = useState("#fffdf6");
+    const [color, setColor] = useState("linear-gradient(90deg, #fffdf6 0%, #ffe3e3 100%)");
     const [hideEyedrop, setHideEyedrop] = useState(false);
     const [hideOpacity, setHideOpacity] = useState(false);
     const [hideModeSwitcher, setHideModeSwitcher] = useState(false);
+    const [mode, setMode] = useState("solid");
     const [copyTick, setCopyTick] = useState(0);
 
     return (
@@ -39,9 +41,12 @@ export default function App() {
                         <ReactColorPicker
                             value={color}
                             onChange={setColor}
+                            defaultMode="gradient"
                             hideEyedrop={hideEyedrop}
                             hideOpacityControl={hideOpacity}
                             hideModeSwitcher={hideModeSwitcher}
+                            activeMode={mode}
+                            onModeChange={setMode}
                         />
                     </div>
 
@@ -91,12 +96,25 @@ export default function App() {
                                 checked={hideModeSwitcher}
                                 onChange={setHideModeSwitcher}
                             />
+                            <Dropdown
+                                label="Default Mode"
+                                subtext={`defaultMode="${mode}"`}
+                                value={mode}
+                                options={["solid", "gradient"]}
+                                onChange={setMode}
+                            />
                         </div>
                     </div>
 
                     {/* Col 3: Code viewer */}
                     <div className="code-col">
-                        <CodeViewer hideEyedrop={hideEyedrop} hideOpacity={hideOpacity} hideModeSwitcher={hideModeSwitcher} />
+                        <CodeViewer
+                            hideEyedrop={hideEyedrop}
+                            hideOpacity={hideOpacity}
+                            hideModeSwitcher={hideModeSwitcher}
+                            defaultMode={mode}
+                            mode={mode}
+                        />
                     </div>
                 </div>
             </section>
