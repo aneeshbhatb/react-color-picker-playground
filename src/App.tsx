@@ -1,3 +1,5 @@
+import type { ReactColorPickerActiveMode } from "@aneeshbhat/react-color-picker";
+
 import { useState } from "react";
 import { ReactColorPicker } from "@aneeshbhat/react-color-picker";
 import { Checkbox } from "./components/Checkbox";
@@ -17,7 +19,7 @@ export default function App() {
     const [hideEyedrop, setHideEyedrop] = useState(false);
     const [hideOpacity, setHideOpacity] = useState(false);
     const [hideModeSwitcher, setHideModeSwitcher] = useState(false);
-    const [activeMode, setActiveMode] = useState("solid");
+    const [activeMode, setActiveMode] = useState<ReactColorPickerActiveMode>("solid");
     const [useDefaultMode, setUseDefaultMode] = useState(false);
     const [copyTick, setCopyTick] = useState(0);
 

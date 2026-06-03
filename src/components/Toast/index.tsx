@@ -11,9 +11,12 @@ export function Toast({ textContent, show }: ToastProps) {
 
     useEffect(() => {
         if (show) {
-            setVisible(true);
+            const raf = requestAnimationFrame(() => setVisible(true));
             const t = setTimeout(() => setVisible(false), 3000);
-            return () => clearTimeout(t);
+            return () => {
+                cancelAnimationFrame(raf);
+                clearTimeout(t);
+            };
         }
     }, [show]);
 

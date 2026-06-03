@@ -1,3 +1,5 @@
+import type { ReactColorPickerActiveMode } from "@aneeshbhat/react-color-picker";
+
 import { useId } from "react";
 
 interface DropdownProps {
@@ -5,7 +7,7 @@ interface DropdownProps {
     subtext?: string;
     value: string;
     options: string[];
-    onChange: (value: string) => void;
+    onChange: (value: ReactColorPickerActiveMode) => void;
 }
 
 export function Dropdown({ label, subtext, value, options, onChange }: DropdownProps) {
@@ -35,7 +37,7 @@ export function Dropdown({ label, subtext, value, options, onChange }: DropdownP
             <select
                 id={id}
                 value={value}
-                onChange={(e) => onChange(e.target.value)}
+                onChange={(e) => onChange(e.target.value as ReactColorPickerActiveMode)}
                 style={{
                     height: "28px",
                     borderRadius: "4px",
