@@ -8,17 +8,20 @@ interface CodeViewerProps {
     hideEyedrop: boolean;
     hideOpacity: boolean;
     hideModeSwitcher: boolean;
+    useDefaultMode: boolean;
     defaultMode: string;
-    mode: string;
 }
 
-export function CodeViewer({ hideEyedrop, hideOpacity, hideModeSwitcher, defaultMode, mode }: CodeViewerProps) {
+export function CodeViewer({ hideEyedrop, hideOpacity, hideModeSwitcher, useDefaultMode, defaultMode }: CodeViewerProps) {
     const lines = [
         "import { ReactColorPicker } from '@aneeshbhat/react-color-picker';",
         "",
         "const [color, setColor] = useState(\"#000000\");",
-        "",
-        "const [mode, setMode] = useState(\"gradient\");",
+
+        ...(useDefaultMode ? [
+            "",
+            "const [activeMode, setActiveMode] = useState(\"gradient\");",
+        ] : []),
         "",
         "<ReactColorPicker",
         "  value={color}",
@@ -26,15 +29,17 @@ export function CodeViewer({ hideEyedrop, hideOpacity, hideModeSwitcher, default
         ...(hideOpacity ? ["  hideOpacityControl={true}"] : []),
         ...(hideEyedrop ? ["  hideEyedrop={true}"] : []),
         ...(hideModeSwitcher ? ["  hideModeSwitcher={true}"] : []),
-        "",
-        "  // optional - used when default mode ",
-        "  // needs to be set. Default is \"solid\"",
-        `  defaultMode="${defaultMode}"`,
-        "",
-        "  // optional - used when custom mode ",
-        "  // switcher is used",
-        `  mode="${mode}"`,
-        "  onModeChange={setMode}",
+        ...(useDefaultMode ? [
+            "",
+            "  // used when default mode needs to  ",
+            "  // be set. Default is \"solid\"",
+            `  defaultMode="${defaultMode}"`,
+            "",
+            "  // optional - used when custom mode ",
+            "  // switcher is used",
+            "  activeMode={activeMode}",
+            "  onModeChange={setActiveMode}",
+        ] : []),
         "/>",
     ];
 

@@ -17,7 +17,8 @@ export default function App() {
     const [hideEyedrop, setHideEyedrop] = useState(false);
     const [hideOpacity, setHideOpacity] = useState(false);
     const [hideModeSwitcher, setHideModeSwitcher] = useState(false);
-    const [mode, setMode] = useState("solid");
+    const [activeMode, setActiveMode] = useState("solid");
+    const [useDefaultMode, setUseDefaultMode] = useState(false);
     const [copyTick, setCopyTick] = useState(0);
 
     return (
@@ -41,12 +42,12 @@ export default function App() {
                         <ReactColorPicker
                             value={color}
                             onChange={setColor}
-                            defaultMode="gradient"
+                            defaultMode="solid"
                             hideEyedrop={hideEyedrop}
                             hideOpacityControl={hideOpacity}
                             hideModeSwitcher={hideModeSwitcher}
-                            activeMode={mode}
-                            onModeChange={setMode}
+                            activeMode={activeMode}
+                            onModeChange={setActiveMode}
                         />
                     </div>
 
@@ -96,13 +97,20 @@ export default function App() {
                                 checked={hideModeSwitcher}
                                 onChange={setHideModeSwitcher}
                             />
-                            <Dropdown
-                                label="Default Mode"
-                                subtext={`defaultMode="${mode}"`}
-                                value={mode}
-                                options={["solid", "gradient"]}
-                                onChange={setMode}
+                            <Checkbox
+                                label="Set Default Mode"
+                                checked={useDefaultMode}
+                                onChange={setUseDefaultMode}
                             />
+                            {useDefaultMode && (
+                                <Dropdown
+                                    label="Default Mode"
+                                    subtext={`defaultMode="${activeMode}"`}
+                                    value={activeMode}
+                                    options={["solid", "gradient"]}
+                                    onChange={setActiveMode}
+                                />
+                            )}
                         </div>
                     </div>
 
@@ -112,8 +120,8 @@ export default function App() {
                             hideEyedrop={hideEyedrop}
                             hideOpacity={hideOpacity}
                             hideModeSwitcher={hideModeSwitcher}
-                            defaultMode={mode}
-                            mode={mode}
+                            useDefaultMode={useDefaultMode}
+                            defaultMode={activeMode}
                         />
                     </div>
                 </div>
