@@ -7,9 +7,10 @@ import { atomOneDark } from "react-syntax-highlighter/dist/esm/styles/hljs";
 interface CodeViewerProps {
     hideEyedrop: boolean;
     hideOpacity: boolean;
+    hideModeSwitcher: boolean;
 }
 
-export function CodeViewer({ hideEyedrop, hideOpacity }: CodeViewerProps) {
+export function CodeViewer({ hideEyedrop, hideOpacity, hideModeSwitcher }: CodeViewerProps) {
     const lines = [
         "import { ReactColorPicker } from '@aneeshbhat/react-color-picker';",
         "",
@@ -18,8 +19,9 @@ export function CodeViewer({ hideEyedrop, hideOpacity }: CodeViewerProps) {
         "<ReactColorPicker",
         "  value={color}",
         "  onChange={setColor}",
-        ...(hideEyedrop ? ["  hideEyedrop={true}"] : []),
         ...(hideOpacity ? ["  hideOpacityControl={true}"] : []),
+        ...(hideEyedrop ? ["  hideEyedrop={true}"] : []),
+        ...(hideModeSwitcher ? ["  hideModeSwitcher={true}"] : []),
         "/>",
     ];
 

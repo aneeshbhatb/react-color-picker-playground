@@ -15,6 +15,7 @@ export default function App() {
     const [color, setColor] = useState("#fffdf6");
     const [hideEyedrop, setHideEyedrop] = useState(false);
     const [hideOpacity, setHideOpacity] = useState(false);
+    const [hideModeSwitcher, setHideModeSwitcher] = useState(false);
     const [copyTick, setCopyTick] = useState(0);
 
     return (
@@ -40,6 +41,7 @@ export default function App() {
                             onChange={setColor}
                             hideEyedrop={hideEyedrop}
                             hideOpacityControl={hideOpacity}
+                            hideModeSwitcher={hideModeSwitcher}
                         />
                     </div>
 
@@ -72,23 +74,29 @@ export default function App() {
                         <div className="customize-card">
                             <span className="customize-label">Customize</span>
                             <Checkbox
+                                label="Hide Opacity Control"
+                                subtext={`hideOpacityControl={${hideOpacity}}`}
+                                checked={hideOpacity}
+                                onChange={setHideOpacity}
+                            />
+                            <Checkbox
                                 label="Hide Eyedrop"
                                 subtext={`hideEyedrop={${hideEyedrop}}`}
                                 checked={hideEyedrop}
                                 onChange={setHideEyedrop}
                             />
                             <Checkbox
-                                label="Hide Opacity Control"
-                                subtext={`hideOpacityControl={${hideOpacity}}`}
-                                checked={hideOpacity}
-                                onChange={setHideOpacity}
+                                label="Hide Mode Switcher"
+                                subtext={`hideModeSwitcher={${hideModeSwitcher}}`}
+                                checked={hideModeSwitcher}
+                                onChange={setHideModeSwitcher}
                             />
                         </div>
                     </div>
 
                     {/* Col 3: Code viewer */}
                     <div className="code-col">
-                        <CodeViewer hideEyedrop={hideEyedrop} hideOpacity={hideOpacity} />
+                        <CodeViewer hideEyedrop={hideEyedrop} hideOpacity={hideOpacity} hideModeSwitcher={hideModeSwitcher} />
                     </div>
                 </div>
             </section>
