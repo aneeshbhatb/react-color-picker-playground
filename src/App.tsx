@@ -13,7 +13,7 @@ import "./App.css";
 import "@aneeshbhat/react-color-picker/style.css";
 
 export default function App() {
-    const [color, setColor] = useState("linear-gradient(90deg, #fffdf6 0%, #ffe3e3 100%)");
+    const [color, setColor] = useState("");
     const [hideEyedrop, setHideEyedrop] = useState(false);
     const [hideOpacity, setHideOpacity] = useState(false);
     const [hideModeSwitcher, setHideModeSwitcher] = useState(false);
@@ -30,7 +30,7 @@ export default function App() {
                 display: "grid",
                 placeItems: "center",
                 fontFamily: "system-ui, sans-serif",
-                background: color,
+                background: color ? color : "linear-gradient(90deg, #fffdf6 0%, #ffe3e3 100%)",
             }}
         >
             <section style={{ width: "min(100%, 1100px)", padding: "0 16px", boxSizing: "border-box" }}>
@@ -65,6 +65,7 @@ export default function App() {
                                 }}
                             />
                             <input
+                                placeholder="#FFFFFF"
                                 value={color}
                                 onChange={(e) => setColor(e.target.value as string)}
                             />
